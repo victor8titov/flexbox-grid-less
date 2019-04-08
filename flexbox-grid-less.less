@@ -6,7 +6,6 @@
   margin-right: auto;
   margin-left: auto;
 }
-
 .row {
   box-sizing: border-box;
   display: -webkit-box;
@@ -27,6 +26,29 @@
   
   margin-right: -@gap;
   margin-left: -@gap;
+}
+.grid-row(@justify: none, @align: none) {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  
+  margin-right: -@gap;
+  margin-left: -@gap;
+  .justify-content(@justify);
+  .align-items(@align);
 }
 .col() {
    /*  SETTINGS GRID  */ 
@@ -117,7 +139,14 @@
   -ms-flex-order: @value;
   order: @value;
 }
-.grid(@col: 12, ) {   
+
+.grid-col(@col: 12, @init: 0 ) when not (@init = 0) {   
+  /*  SETTINGS GRID  */    
+  .width(@col);
+  .col;
+  /*  END SETTINGS GRID */
+}
+.grid-col(@col: 12, @init: 0 ) when (@init = 0) {   
   /*  SETTINGS GRID  */    
   .width(@col);
   /*  END SETTINGS GRID */
